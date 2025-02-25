@@ -1,4 +1,4 @@
-package Selenium;
+package Rapifuzz;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
