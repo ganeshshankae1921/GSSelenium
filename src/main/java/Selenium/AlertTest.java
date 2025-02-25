@@ -20,8 +20,8 @@ public class AlertTest {
         WebDriver driver = new ChromeDriver();
         String name = "ganesh";
         String[] items = {"Cucumber", "Mushroom", "Musk Melon"};
-//        alertTest(driver,name);
-//        addItems(driver, items);
+        alertTest(driver,name);
+        addItems(driver, items);
         verifyAlert(driver, name);
 
     }
