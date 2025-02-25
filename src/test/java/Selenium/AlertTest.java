@@ -1,33 +1,33 @@
 package Selenium;
 
+import net.bytebuddy.build.Plugin;
+import org.apache.hc.core5.reactor.Command;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class AlertTest {
+    WebDriver driver;
+    String name = "ganesh";
+    String[] items = {"Cucumber", "Mushroom", "Musk Melon"};
 
-    public static void main(String[] args) {
-
+    @BeforeMethod
+    public static void browserTest() {
         System.setProperty("webdriver.chrome.drive", "C:/Users/Pragati/IdeaProjects/SeleniumAuto/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        String name = "ganesh";
-        String[] items = {"Cucumber", "Mushroom", "Musk Melon"};
-        alertTest(driver,name);
-        addItems(driver, items);
-        verifyAlert(driver, name);
-
     }
-    public static void alertTest(WebDriver driver, String name){
-
-
+    @Test()
+    public void alertTest(){
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement alerttextfield = driver.findElement(By.xpath("//input[@placeholder='Enter Your Name']"));
 
@@ -41,7 +41,9 @@ public class AlertTest {
         System.out.println(driver.switchTo().alert().getText());
         driver.switchTo().alert().dismiss();
     }
-    public static void addItems(WebDriver driver, String[] items) {
+
+    @Test
+    public void addItems() {
 
 
         int j = 0;
@@ -63,7 +65,8 @@ public class AlertTest {
         }
     }
 
-    public static void verifyAlert(WebDriver driver, String name){
+    @Test
+    public void verifyAlert(){
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement alerttextfield = driver.findElement(By.xpath("//input[@placeholder='Enter Your Name']"));
 
