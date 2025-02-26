@@ -1,8 +1,7 @@
 package Selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +9,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -22,16 +23,17 @@ public class AlertTest {
 
 
     @BeforeMethod
-    public static void browserTest() {
+    public static void openBrowser() {
         System.setProperty("webdriver.chrome.drive", "C:/Users/Pragati/IdeaProjects/SeleniumAuto/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         driver.manage().window().maximize();
     }
-   @Test()
+
+    @Test(priority = 0)
     public void alertTest(){
-//        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        WebElement alerttextfield = driver.findElement(By.xpath("//input[@placeholder='Enter Your Name']"));
+        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+
+       WebElement alerttextfield = driver.findElement(By.xpath("//input[@placeholder='Enter Your Name']"));
 
         alerttextfield.sendKeys(name);
         driver.findElement(By.cssSelector("input#alertbtn")).click();
@@ -44,7 +46,7 @@ public class AlertTest {
         driver.switchTo().alert().dismiss();
     }
 
-//    @Test
+    @Test(priority = 1)
     public void addItems() {
 
         int j = 0;
@@ -66,9 +68,9 @@ public class AlertTest {
         }
     }
 
-    @AfterMethod
+    @Test(priority = 2)
     public void verifyAlert(){
-//        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement alerttextfield = driver.findElement(By.xpath("//input[@placeholder='Enter Your Name']"));
 
         alerttextfield.sendKeys(name);
@@ -76,13 +78,30 @@ public class AlertTest {
         driver.findElement(By.cssSelector("input#alertbtn")).click();
         if(wt.until(ExpectedConditions.alertIsPresent()) == null){
             System.out.println("No Alert Present");
-
         }
         else{
             driver.switchTo().alert().accept();
         }
     }
 
+    @Test(priority = 3)
+    public static void practice() throws IOException {
+        driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+        int a = driver.findElements(By.tagName("a")).size();
+        System.out.println(a);
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,500)");
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+        File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(src, new File("d//screenshot.png"));
+    }
+
+    @AfterMethod
+    public static void closeBrowser(){
+        driver.quit();
+
+    }
 
 
 }

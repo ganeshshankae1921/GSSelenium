@@ -1,4 +1,4 @@
-package Rapifuzz;
+package Selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -8,7 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.Iterator;
@@ -16,20 +18,18 @@ import java.util.List;
 import java.util.Set;
 
 public class Practice {
-    public static void main(String[] args) throws InterruptedException {
 
+    public static WebDriver driver;
+
+
+    @BeforeMethod
+    public static void openBrowser(){
         System.setProperty("WebDriver.chrome.driver", "C:/Users/Pragati/IdeaProjects/SeleniumAuto/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-//      assignment1(driver);
-//      assignment2(driver);
-//      assignment3(driver);
-//      assignment4(driver);
-        assignment5(driver);
-
     }
 
-
+    @Test(priority = 0)
     public static void assignment1(WebDriver driver){
         driver.get("https://rahulshettyacademy.com/loginpagePractise/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -62,7 +62,8 @@ public class Practice {
         driver.switchTo().window(parentId);
     }
 
-    public static void assignment2(WebDriver driver){
+    @Test(priority = 1)
+    public static void assignment2(){
         driver.get("https://the-internet.herokuapp.com/");
       //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
@@ -80,7 +81,8 @@ public class Practice {
         System.out.println(driver.findElement(By.xpath("//div[@class='example']/h3")).getText());
     }
 
-    public static void assignment3(WebDriver driver){
+    @Test(priority = 2)
+    public static void assignment3(){
         driver.get("https://the-internet.herokuapp.com/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.findElement(By.xpath("//a[text()='Nested Frames']")).click();
@@ -97,7 +99,8 @@ public class Practice {
 
     }
 
-    public static void assignment4(WebDriver driver) throws InterruptedException {
+    @Test(priority = 3)
+    public static void assignment4() throws InterruptedException {
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         System.out.println(driver.findElements(By.tagName("a")).size());
         WebElement footer = driver.findElement(By.xpath("//div[@id='gf-BIG']"));
@@ -119,7 +122,8 @@ public class Practice {
 
     }
 
-    public static void assignment5(WebDriver driver){
+    @Test(priority = 4)
+    public static void assignment5(){
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         driver.findElement(By.cssSelector("input#checkBoxOption2")).click();
         String selectElement = driver.findElement(By.xpath("//input[@id='checkBoxOption2']/parent::label")).getText();
@@ -139,5 +143,11 @@ public class Practice {
             System.out.println("Alert message does not contains " + selectElement);
         }
     }
+
+    @AfterMethod
+    public static void closeBrowser(){
+        driver.quit();
+    }
 }
+
 
