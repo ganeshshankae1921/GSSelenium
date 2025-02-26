@@ -52,14 +52,6 @@ public class Practice {
             items.get(i).click();
         }
 
-//        driver.findElement(By.xpath("//a[@class='blinkingText']")).click();
-//        Set<String> window = driver.getWindowHandles();
-//        Iterator<String> it = window.iterator();
-//        String parentId = it.next();
-//        String childId = it.next();
-//        driver.switchTo().window(childId);
-//        System.out.println(driver.findElement(By.xpath("//p[@class='hero_heading']")).getText().split("-")[1]);
-//        driver.switchTo().window(parentId);
     }
 
     @Test(priority = 1)
