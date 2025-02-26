@@ -7,10 +7,4 @@
         </classes>
     </test>
 
-    <test name="Test">
-        <classes>
-            <class name="Selenium.AlertTest"/>
-        </classes>
-    </test>
-
 </suite>
