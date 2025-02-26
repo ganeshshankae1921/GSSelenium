@@ -30,7 +30,7 @@ public class Practice {
     }
 
     @Test(priority = 0)
-    public static void assignment1(WebDriver driver){
+    public static void assignment1(){
         driver.get("https://rahulshettyacademy.com/loginpagePractise/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(By.cssSelector("input#username")).sendKeys("rahulshettyacademy");
