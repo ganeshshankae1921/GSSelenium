@@ -2,9 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
     <test name="Test">
-        <classes>
-            <class name="Selenium.Practice"/>
-        </classes>
+        <packages>
+            <package name="Selenium">
+            </package>
+        </packages>
+<!--        <classes>-->
+<!--            <class name="Selenium.Practice"/>-->
+<!--        </classes>-->
     </test>
 
 </suite>
